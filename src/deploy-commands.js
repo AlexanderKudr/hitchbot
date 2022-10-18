@@ -1,18 +1,27 @@
 import { REST, Routes } from "discord.js";
-import fs from "fs";
-import path from "path";
+import { token, clientId, guildId } from "./config/config.js";
+import { commands } from "./helpers/commandConsumer.js";
 
+const rest = new REST({ version: "10" }).setToken(token);
+export const registerCommands = async () => {
+  try {
+    console.log("Started refreshing application (/) commands.");
+    await rest
+      .put(Routes.applicationGuildCommands(clientId, guildId), {
+        body: commands,
+      })
+      .then((data) =>
+        console.log(
+          `Successfully registered ${data.length} application commands.`
+        )
+      );
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-
-
-
-
-// import * as dotenv from "dotenv";
-// dotenv.config();
-
-// const token = process.env.DISCORD_TOKEN;
-// const clientId = process.env.CLIENT_ID;
-// const guildId = process.env.GUILD_ID;
+// import fs from "fs";
+// import path from "path";
 
 // if (token && clientId && guildId) {
 //   const commands = [];

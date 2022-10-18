@@ -1,12 +1,10 @@
-console.log('Hello World')
+console.log("Hello World");
 import express from "express";
+import { router } from "./routes/goalRoutes.js";
+import { port } from "../config/config.js";
 
-import * as dotenv from "dotenv";
-dotenv.config();
+const app = express();
 
-const port = process.env.PORT; 
-const app = express();   
+app.use("/api/goals", router);
 
-app.use('/api/goals', import("./routes/goalRoutes"))
-
-app.listen(port, () => console.log(`Server started on port ${port}`))
+app.listen(port, () => console.log(`Server started on port ${port}`));

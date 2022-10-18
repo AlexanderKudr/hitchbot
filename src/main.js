@@ -1,20 +1,34 @@
 // Require the necessary discord.js classes
 import { Client, GatewayIntentBits, Collection } from "discord.js";
-import fs from "fs";
-import path from "path";
-
-import * as dotenv from "dotenv";
-dotenv.config();
-
-const token = process.env.DISCORD_TOKEN;
+import { token } from "./config/config.js";
+import { registerCommands } from "./deploy-commands.js";
+import { events } from "./helpers/eventConsumer.js";
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+client.commands = new Collection();
 
+registerCommands();
+
+// client.on("interactionCreate", async (interaction) => {
+//   if (!interaction.isChatInputCommand()) return;
+
+//   if (interaction.commandName === "ping") {
+//     await interaction.reply({ content: "Secret Pong!", ephemeral: true });
+//   }
+// });
 // When the client is ready, run this code (only once)
-client.once('ready', () => {
-	console.log('Ready!');
-});
+const test = (val) => {
+  if (val.once)
+    client.once(val.name, (...args) => val.execute(...args, client));
+  // else client.on(val.name, (...args) => val.execute(...args, client));
+};
+test(events.ready);
+// test(events.ready || events.interactionCreate);
+
+// client.once("ready", () => {
+//   console.log("Ready!");
+// });
 
 // Login to Discord with your client's token
 client.login(token);
@@ -22,7 +36,6 @@ client.login(token);
 // if (token) {
 //   const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 //   client.commands = new Collection();
-
 
 //   /** commandPath __dirname = \Users\Alex\Desktop\Coding\Projects\JS\hitchbot\src\ + "commands" */
 //   const commandsPath = path.join(process.cwd(), "commands");
@@ -56,7 +69,7 @@ client.login(token);
 // 	} catch (error) {
 // 		console.error(error);
 // 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-// 	} 
+// 	}
 //   });
 
 //   // Login to Discord with your client's token
