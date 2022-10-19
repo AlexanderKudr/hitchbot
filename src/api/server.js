@@ -1,7 +1,7 @@
 console.log("Hello World");
 import express from "express";
-import { router } from "./routes/goalRoutes.js";
 import { port } from "../config/config.js";
+import { router } from "./routes/goalRoutes.js";
 
 const app = express();
 

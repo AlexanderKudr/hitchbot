@@ -1,15 +1,15 @@
-import { commands } from "../helpers/commandConsumer.js";
-
+import { ping } from "../commands/ping.js";
 export const interactionCreate = {
   name: "interactionCreate",
-  async execute(interaction) {
+  on: true,
+  execute: async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-
-    const { commandName } = interaction;
-
-    if (commandName === "ping") {
-      interaction.reply("Reacting with Pong!");
-    }
+    if (ping.data.name) return ping.execute(interaction);
   },
 };
-//todo here ASAP
+
+export const interactionCreateHandler = (val, client) => {
+  if (val.on) {
+    client.on(val.name, (...args) => val.execute(...args));
+  }
+};

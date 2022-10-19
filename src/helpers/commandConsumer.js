@@ -1,9 +1,9 @@
-import { pingCommand } from "../commands/ping.js";
-import { userCommand } from "../commands/user.js";
-import { serverCommand } from "../commands/server.js";
+import { ping } from "../commands/ping.js";
+import { user } from "../commands/user.js";
+import { server } from "../commands/server.js";
 
 export const commands = [
-  pingCommand.data,
-  userCommand.data,
-  serverCommand.data,
+  ping.data,
+  user.data,
+  server.data,
 ];

@@ -1,4 +1,4 @@
-export const ready =  {
+export const ready = {
   name: "ready",
   once: true,
   execute(client) {
@@ -6,4 +6,8 @@ export const ready =  {
   },
 };
 
- 
+export const ifReady = (val, client) => {
+  if (val.once)
+    client.once(val.name, (...args) => val.execute(...args));
+};
+
