@@ -4,9 +4,8 @@ export const ping = {
   data: new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Replies with Pong!"),
-  async execute(interaction) {
+  execute: async (interaction) => {
     await interaction.reply("Pong!");
   },
- 
 };
-//
+

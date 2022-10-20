@@ -6,8 +6,8 @@ export const ready = {
   },
 };
 
-export const ifReady = (val, client) => {
-  if (val.once)
-    client.once(val.name, (...args) => val.execute(...args));
+export const ifReady = (ready, client) => {
+  if (ready.once)
+    client.once(ready.name, (...args) => ready.execute(...args));
 };
 

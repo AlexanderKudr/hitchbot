@@ -3,7 +3,7 @@ import { events } from "./helpers/eventConsumer.js";
 import { registerCommands } from "./deploy-commands.js";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+export const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 
 const { ready, ifReady, interactionCreate, interactionCreateHandler } = events;
@@ -15,3 +15,7 @@ interactionCreateHandler(interactionCreate, client)
 ifReady(ready, client);
 // Login to Discord with client's (bot's) token.
 client.login(token);
+
+
+
+

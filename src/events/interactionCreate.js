@@ -1,15 +1,23 @@
-import { ping } from "../commands/ping.js";
+import { commands } from "../helpers/commandConsumer.js";
+
 export const interactionCreate = {
   name: "interactionCreate",
   on: true,
-  execute: async (interaction) => {
+  async execute(interaction) {
+    
     if (!interaction.isChatInputCommand()) return;
-    if (ping.data.name) return ping.execute(interaction);
+
+    try {
+      await commands[interaction.commandName].execute(interaction);
+    } catch (err) {
+      console.error(err.message);
+    }
+    
   },
 };
 
-export const interactionCreateHandler = (val, client) => {
-  if (val.on) {
-    client.on(val.name, (...args) => val.execute(...args));
+export const interactionCreateHandler = (intCreate, client) => {
+  if (intCreate.on) {
+    client.on(intCreate.name, (...args) => intCreate.execute(...args));
   }
 };
