@@ -8,4 +8,3 @@ export const ping = {
     await interaction.reply("Pong!");
   },
 };
-
