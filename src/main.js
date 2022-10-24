@@ -1,12 +1,7 @@
 import { token } from "./config/config.js";
 import { events } from "./helpers/eventConsumer.js";
 import { registerCommands } from "./deploy-commands.js";
-import {
-  Client,
-  GatewayIntentBits,
-  Collection,
-  Partials,
-} from "discord.js";
+import { Client, GatewayIntentBits, Collection, Partials, ChannelType } from "discord.js";
 import "./api/server.js";
 
 export const client = new Client({
@@ -31,11 +26,10 @@ ifReady(ready, client);
 // Login to Discord with client's (bot's) token.
 client.login(token);
 
+
 const voiceCollection = new Collection();
-
 client.on("voiceStateUpdate", async (oldState, newState) => {
-
-  console.log("test 1")
+  console.log("test 1");
   const user = await client.users.fetch(newState.id);
   const member = await newState.guild.members.fetch(user);
   console.log("test 2");
@@ -43,17 +37,23 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
 
   if (newState.channelId === "1033542133984018512") {
     console.log("test 3");
-    const channel = await newState.guild.channels.create("Join to Create", {
+    const channel = await newState.guild.channels.create({
       name: "test",
-      type: "voice",
+      type: ChannelType.GuildVoice,
       parent: newState.channel.parent,
+      // permissionOverwrites: [
+      //   {
+      //     id: newState.guild.id,
+      //     allow: ["VIEW_CHANNEL"],
+      //   },
+      // ],
     });
     console.log("test 4");
     member.voice.setChannel(channel);
     voiceCollection.set(user.id, channel.id);
-  }
-  else if (!newState.channel) {
-    if (oldState.channel.id === voiceCollection.get(newState.id))
+  } else if (!newState.channelId) {
+    console.log("test 5")
+    if (oldState.channelId === voiceCollection.get(newState.id))
       return oldState.channel.delete();
   }
 });
