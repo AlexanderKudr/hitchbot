@@ -1,12 +1,12 @@
-import { ready, ifReady } from "../events/ready.js";
-import {
-  interactionCreate,
-  interactionCreateHandler,
-} from "../events/interactionCreate.js";
+import { ready } from "../events/ready.js";
+import { interactionCreate } from "../events/interactionCreate.js";
+import { joinToCreateRoom } from "../events/joinToCreateRoom.js";
 
 export const events = {
+  //When the client is ready, this code print: Ready!
   ready,
-  ifReady,
+  //reply to commands
   interactionCreate,
-  interactionCreateHandler,
+  //bot will create a room when join 
+  joinToCreateRoom
 };
