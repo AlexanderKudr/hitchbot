@@ -1,13 +1,14 @@
 import { ping } from "../commands/ping.js";
 import { user } from "../commands/user.js";
-import { server } from "../commands/server.js";
+import { rules } from "../commands/rules.js";
 import { urban } from "../commands/urban.js";
+import { server } from "../commands/server.js";
 import { stopbullyingmayo } from "../commands/mayo.js";
-
 export const commands = {
   ping,
   user,
-  server,
   urban,
+  rules,
+  server,
   stopbullyingmayo
 };
