@@ -1,8 +1,7 @@
 import { SlashCommandBuilder } from "discord.js";
 const one = {
   name: "1. Be respectful",
-  value:
-    "1. Be respectful. Remember the human! No insulting, no bullying, no name-calling.",
+  value: "1. Be respectful",
 };
 const two = { name: "Meme", value: "meme" };
 const three = { name: "Movie", value: "lol" };
@@ -15,6 +14,8 @@ export const rules = {
     ),
   async execute(interaction) {
     const ruleOption = interaction.options.getString("choose");
-    await interaction.reply(ruleOption);
+    await interaction.reply(
+      `${ruleOption} https://discord.com/channels/1008061995095957705/1018169718911279104/1019002716304965702`
+    );
   },
 };
