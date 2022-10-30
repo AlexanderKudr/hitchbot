@@ -3,7 +3,8 @@ const one = {
   name: "1. Be respectful",
   value: "1. Be respectful",
 };
-const two = { name: "Meme", value: "meme" };
+//todo rules
+const two = { name: "2", value: "meme" };
 const three = { name: "Movie", value: "lol" };
 export const rules = {
   data: new SlashCommandBuilder()
