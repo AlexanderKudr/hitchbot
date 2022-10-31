@@ -1,17 +1,18 @@
+import { ruleOptions } from "../utils/ruleOptions.js";
 import { SlashCommandBuilder } from "discord.js";
-const one = {
-  name: "1. Be respectful",
-  value: "1. Be respectful",
-};
-//todo rules
-const two = { name: "2", value: "meme" };
-const three = { name: "Movie", value: "lol" };
+
+const { r1, r2, r3, r4, r5, r6, r7, r8, r9 } = ruleOptions;
+
 export const rules = {
   data: new SlashCommandBuilder()
     .setName("rules")
     .setDescription("Print rule on demand")
     .addStringOption((option) =>
-      option.setName("choose").setDescription("-_^").addChoices(one, two, three)
+      // option.setName("choose").setDescription("-_^").addChoices(one, two, three)
+      option
+        .setName("choose")
+        .setDescription("-_^")
+        .addChoices(r1, r2, r3, r4, r5, r6, r7, r8, r9)
     ),
   async execute(interaction) {
     const ruleOption = interaction.options.getString("choose");

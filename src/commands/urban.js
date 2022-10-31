@@ -1,7 +1,8 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import { rapidApiKey, rapidApiHost, rapidUrbanLink } from "../config/config.js";
 import axios from "axios";
-
+    //TODO: add embeds for styling
+    //==========================
 export const urban = {
   data: new SlashCommandBuilder()
     .setName("urban")
@@ -31,8 +32,7 @@ export const urban = {
       await interaction.reply(response);
     }
 
-    //TODO: add embeds for styling
-    //
+
     // const req = await axios.request(options);
     // const res = req.data.list[0];
     // const trim = (str, max) =>

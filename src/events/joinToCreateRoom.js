@@ -1,5 +1,5 @@
 import { ChannelType } from "discord.js";
-import { client } from "../utils/index.js";
+import { client } from "../utils/client.js";
 
 let arrayID = [];
 export const joinToCreateRoom = {
