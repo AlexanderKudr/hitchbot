@@ -4,7 +4,9 @@ import { rules } from "../commands/rules.js";
 import { urban } from "../commands/urban.js";
 import { server } from "../commands/server.js";
 import { github } from "../commands/github.js";
+import { dadJoke } from "../commands/dadjoke.js";
 import { stopbullyingmayo } from "../commands/mayo.js";
+
 export const commands = {
   ping,
   user,
@@ -12,5 +14,6 @@ export const commands = {
   rules,
   server,
   github,
+  dadJoke,
   stopbullyingmayo
 };

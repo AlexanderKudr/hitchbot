@@ -9,7 +9,7 @@ export const joinToCreateRoom = {
     const user = await client.users.fetch(newState.id);
     const member = await newState.guild.members.fetch(user);
 
-    if (newState.channelId === "1034200772935696465") {
+    if (newState.channelId === "1037049824903696474") {
       const channel = await newState.guild.channels.create({
         name: `${user.username}'s room`,
         type: ChannelType.GuildVoice,

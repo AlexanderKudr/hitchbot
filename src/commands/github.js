@@ -1,36 +1,49 @@
 import { SlashCommandBuilder } from "discord.js";
 import axios from "axios";
 
-// const options = {
-//   method: "GET",
-//   url: "https://github-trending.p.rapidapi.com/developers",
-//   params: { language: "rust", since: "daily" },
-//   headers: {
-//     "X-RapidAPI-Key": "fb8032f3f6msh70b4ba7315debcep16ca8fjsn88af34360596",
-//     "X-RapidAPI-Host": "github-trending.p.rapidapi.com",
-//   },
-// };
-// const req = await axios.request(options);
-// const result = await req.data.map((i) => i.name + i.url).slice(0, 10).join("");
+const optionsDevelopers = {
+  method: "GET",
+  url: "https://github-trending.p.rapidapi.com/developers",
+  params: { language: "rust", since: "daily" },
+  headers: {
+    "X-RapidAPI-Key": "fb8032f3f6msh70b4ba7315debcep16ca8fjsn88af34360596",
+    "X-RapidAPI-Host": "github-trending.p.rapidapi.com",
+  },
+};
+const optionsRepositories = {
+  method: 'GET',
+  url: 'https://github-trending.p.rapidapi.com/repositories',
+  params: {language: 'rust', since: 'daily', spoken_language_code: 'en'},
+  headers: {
+    'X-RapidAPI-Key': 'fb8032f3f6msh70b4ba7315debcep16ca8fjsn88af34360596',
+    'X-RapidAPI-Host': 'github-trending.p.rapidapi.com'
+  }
+};
 export const github = {
   data: new SlashCommandBuilder()
     .setName("github")
-    .setDescription("github trends")
-    .addStringOption((option) =>
-      // option.setName("choose").setDescription("-_^").addChoices(one, two, three)
-      option.setName("trends").setDescription("_").addChoices(
-        {
-          name: "developers",
-          value: "developers",
-        },
-        { name: "repositories", value: "repositories" }
-      )
+    .setDescription("get github trends")
+    .addSubcommand((subcommand) =>
+      subcommand.setName("developers").setDescription("top devs on github")
+    )
+    .addSubcommand((subcommand) =>
+      subcommand.setName("repositories").setDescription("top repos on github")
     ),
-  execute: async (interaction) => {
-    const ruleOption = interaction.options.getString("trends");
-    await interaction.reply(ruleOption);
 
-    // await interaction.reply(result)
-    console.log(result.join(" "));
+  async execute(interaction) {
+    if (interaction.options.getSubcommand() === "developers") {
+      const req = await axios.request(optionsDevelopers);
+      const result = await req.data
+        .map((i) => i.name + i.url)
+        .slice(0, 5)
+        .join(" ");
+
+      await interaction.reply(`${result}`);
+
+    } else if (interaction.options.getSubcommand() === "server") {
+      await interaction.reply(
+        `Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`
+      );
+    }
   },
 };
