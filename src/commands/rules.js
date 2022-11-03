@@ -7,7 +7,7 @@ export const rules = {
     .setDescription("Print rule on demand")
     .addStringOption((option) => {
       let choice = option.setName("choose").setDescription("-_^");
-      let params = Object.keys(ruleOptions).map(i => ruleOptions[i])
+      let params = Object.keys(ruleOptions).map(i => ruleOptions[i]);
       return choice.addChoices.apply(option, params);
     }),
   async execute(interaction) {

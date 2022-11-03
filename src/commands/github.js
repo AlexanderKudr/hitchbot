@@ -37,13 +37,15 @@ export const github = {
         .map((i) => i.name + i.url)
         .slice(0, 5)
         .join(" ");
-
       await interaction.reply(`${result}`);
 
-    } else if (interaction.options.getSubcommand() === "server") {
-      await interaction.reply(
-        `Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`
-      );
+    } else if (interaction.options.getSubcommand() === "repositories") {
+      const req = await axios.request(optionsRepositories);
+      const result = await req.data
+        .map((i) => i.name + i.url)
+        .slice(0, 5)
+        .join(" ");
+      await interaction.reply(`${result}`);
     }
   },
 };
