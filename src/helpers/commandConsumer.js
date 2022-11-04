@@ -15,5 +15,5 @@ export const commands = {
   server,
   github,
   dadjoke,
-  stopbullyingmayo
+  stopbullyingmayo,
 };

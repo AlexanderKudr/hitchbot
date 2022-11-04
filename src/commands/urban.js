@@ -13,7 +13,6 @@ export const urban = {
     ),
 
   execute: async (interaction) => {
-
     const term = interaction.options.getString("word");
     const urbanParams = { term: `${term}` };
     const req = await axios.request(
@@ -23,9 +22,7 @@ export const urban = {
     if (req.data.list.length === 0) {
       return await interaction.reply(`No results found for **${term}**.`);
     } else {
-      const response = req.data.list[0].definition;
-      // console.log(getData.data.list)
-      await interaction.reply(response);
+      await interaction.reply(req.data.list[0].definition);
     }
 
     // const req = await axios.request(options);

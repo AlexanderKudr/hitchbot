@@ -6,7 +6,6 @@ export const stopbullyingmayo = {
     .setName("stopbullyingmayo")
     .setDescription("i warned you"),
   execute: async (interaction) => {
-    await interaction.reply({files: [file]});
+    await interaction.reply({ files: [file] });
   },
 };
-

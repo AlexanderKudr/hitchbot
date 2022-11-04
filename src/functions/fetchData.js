@@ -1,5 +1,6 @@
 import { rapidApiKey } from "../config/config.js";
 
+//if you don't need params, just type "" or null;
 export const fetchData = (params, url, host) => {
   const data = {
     method: "GET",
