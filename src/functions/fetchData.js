@@ -1,15 +1,19 @@
-export const optionsDevsAndRepos = (params, url) => {
+import { rapidApiKey } from "../config/config.js";
+
+export const fetchData = (params, url, host) => {
   const data = {
     method: "GET",
-    url: `https://github-trending.p.rapidapi.com/${url}`,
+    url: url,
     params: params,
     headers: {
-      "X-RapidAPI-Key": "fb8032f3f6msh70b4ba7315debcep16ca8fjsn88af34360596",
-      "X-RapidAPI-Host": "github-trending.p.rapidapi.com",
+      "X-RapidAPI-Key": rapidApiKey,
+      "X-RapidAPI-Host": host,
     },
   };
   return data;
 };
+
+//good if need to return random 5 things/items
 export const fetchResult = (req) => {
   const response = req.data.map((i) => `${i.url} ${i.name}`);
   const result = [];

@@ -1,8 +1,9 @@
-import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import { rapidApiKey, rapidApiHost, rapidUrbanLink } from "../config/config.js";
 import axios from "axios";
-    //TODO: add embeds for styling
-    //==========================
+import { fetchData } from "../functions/fetchData.js";
+import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import { urbanHost, urbanLink } from "../config/config.js";
+//TODO: add embeds for styling
+//==========================
 export const urban = {
   data: new SlashCommandBuilder()
     .setName("urban")
@@ -12,26 +13,20 @@ export const urban = {
     ),
 
   execute: async (interaction) => {
-    const term = interaction.options.getString("word");
-    const options = {
-      method: "GET",
-      url: `${rapidUrbanLink}`,
-      params: { term: `${term}` },
-      headers: {
-        "X-RapidAPI-Key": `${rapidApiKey}`,
-        "X-RapidAPI-Host": `${rapidApiHost}`,
-      },
-    };
 
-    const getData = await axios.request(options);
-    if (getData.data.list.length === 0) {
+    const term = interaction.options.getString("word");
+    const urbanParams = { term: `${term}` };
+    const req = await axios.request(
+      fetchData(urbanParams, urbanLink, urbanHost)
+    );
+
+    if (req.data.list.length === 0) {
       return await interaction.reply(`No results found for **${term}**.`);
     } else {
-      const response = getData.data.list[0].definition;
+      const response = req.data.list[0].definition;
       // console.log(getData.data.list)
       await interaction.reply(response);
     }
-
 
     // const req = await axios.request(options);
     // const res = req.data.list[0];
