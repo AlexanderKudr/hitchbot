@@ -1,5 +1,8 @@
 import { SlashCommandBuilder } from "discord.js";
-import { optionsDevsAndRepos } from "../functions/githubFetcher.js";
+import {
+  optionsDevsAndRepos,
+  fetchResult,
+} from "../functions/githubFetcher.js";
 import axios from "axios";
 
 export const github = {
@@ -11,7 +14,7 @@ export const github = {
         .setName("developers")
         .setDescription("top devs on github")
         .addStringOption((option) =>
-          option.setName("language").setDescription("max 32 characters")
+          option.setName("language").setDescription("coding lang")
         )
     )
     .addSubcommand((subcommand) =>
@@ -19,7 +22,7 @@ export const github = {
         .setName("repositories")
         .setDescription("top repos on github")
         .addStringOption((option) =>
-          option.setName("language").setDescription("max 32 characters")
+          option.setName("language").setDescription("coding lang")
         )
     ),
 
@@ -36,28 +39,13 @@ export const github = {
       const req = await axios.request(
         optionsDevsAndRepos(devParams, "developers")
       );
-      const response = await req.data.map((i) => `${i.url} ${i.name}`);
-      const result = [];
-      for (let i = 0; i < response.length; i++) {
-        if (result.length < 5) {
-          result.push(response[Math.floor(Math.random() * response.length)]);
-        }
-      }
-      console.log(result);
-      await interaction.reply(`${result}`);
-
+      await interaction.reply(`${fetchResult(req)}`);
+      
     } else if (interaction.options.getSubcommand() === "repositories") {
       const req = await axios.request(
         optionsDevsAndRepos(reposParams, "repositories")
       );
-      const response = await req.data.map((i) => `${i.url} ${i.name}`);
-      const result = [];
-      for (let i = 0; i < response.length; i++) {
-        if (result.length < 5) {
-          result.push(response[Math.floor(Math.random() * response.length)]);
-        }
-      }
-      await interaction.reply(`${result}`);
+      await interaction.reply(`${fetchResult(req)}`);
     }
   },
 };

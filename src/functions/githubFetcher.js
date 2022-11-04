@@ -9,4 +9,14 @@ export const optionsDevsAndRepos = (params, url) => {
     },
   };
   return data;
-}
+};
+export const fetchResult = (req) => {
+  const response = req.data.map((i) => `${i.url} ${i.name}`);
+  const result = [];
+  for (let i = 0; i < response.length; i++) {
+    if (result.length < 5) {
+      result.push(response[Math.floor(Math.random() * response.length)]);
+    }
+  }
+  return result;
+};
