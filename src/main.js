@@ -11,3 +11,4 @@ registerCommands();
 Object.values(events).map((event) => eventHandler(event, client));
 //Login to Discord with client's (bot's) token.
 client.login(token);
+
