@@ -1,6 +1,7 @@
 import { client } from "../utils/client.js";
 import { ChannelType } from "discord.js";
-
+//found a bug (when inside temporary channel, 
+// you can join into JTC again then printing infite channels, fix with permissions)
 let arrayID = [];
 export const joinToCreateRoom = {
   name: "voiceStateUpdate",
