@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+
 export const port = process.env.PORT;
 export const token = process.env.DISCORD_TOKEN;
 export const guildId = process.env.GUILD_ID;

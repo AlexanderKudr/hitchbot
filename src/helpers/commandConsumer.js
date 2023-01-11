@@ -6,6 +6,7 @@ import { server } from "../commands/server.js";
 import { lyrics } from "../commands/lyrics.js";
 import { github } from "../commands/github.js";
 import { dadjoke } from "../commands/dadJoke.js";
+import { midjourney } from "../commands/midjourney.js";
 import { stopbullyingmayo } from "../commands/mayo.js";
 
 export const commands = {
@@ -17,5 +18,6 @@ export const commands = {
   github,
   lyrics,
   dadjoke,
+  midjourney,
   stopbullyingmayo,
 };

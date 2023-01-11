@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
-
+//todo: finish after roles events
 export const roles = {
   data: new SlashCommandBuilder()
     .setName("roles")
