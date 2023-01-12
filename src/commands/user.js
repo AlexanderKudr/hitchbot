@@ -1,5 +1,4 @@
 import { SlashCommandBuilder } from "discord.js";
-
 export const user = {
   data: new SlashCommandBuilder()
     .setName("user")

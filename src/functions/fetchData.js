@@ -15,7 +15,7 @@ export const fetchData = (params, url, host) => {
 };
 
 //good if need to return random 5 things/items
-export const fetchResult = (req) => {
+export const randomFiveElements = (req) => {
   const response = req.data.map((i) => `${i.url} ${i.name}`);
   const result = [];
   for (let i = 0; i < response.length; i++) {

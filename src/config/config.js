@@ -16,3 +16,4 @@ export const urbanLink = process.env.RAPID_API_URBAN_LINK;
 export const dadjokeLink = process.env.RAPID_API_GITHUB_DADJOKE_LINK;
 export const githubDevLink = process.env.RAPID_API_GITHUB_DEV_LINK;
 export const githubReposLink = process.env.RAPID_API_GITHUB_REPO_LINK;
+

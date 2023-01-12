@@ -4,7 +4,7 @@ import {
   githubDevLink,
   githubHost,
 } from "../config/config.js";
-import { fetchData, fetchResult } from "../functions/fetchData.js";
+import { fetchData, randomFiveElements } from "../functions/fetchData.js";
 import axios from "axios";
 
 export const github = {
@@ -38,15 +38,16 @@ export const github = {
     };
 
     if (interaction.options.getSubcommand() === "developers") {
-      const req = await axios.request(
+      const request = await axios.request(
         fetchData(devParams, githubDevLink, githubHost)
       );
-      await interaction.reply(`${fetchResult(req)}`);
-    } else if (interaction.options.getSubcommand() === "repositories") {
-      const req = await axios.request(
+      await interaction.reply(`${randomFiveElements(request)}`);
+    } 
+    if (interaction.options.getSubcommand() === "repositories") {
+      const request = await axios.request(
         fetchData(reposParams, githubReposLink, githubHost)
       );
-      await interaction.reply(`${fetchResult(req)}`);
+      await interaction.reply(`${randomFiveElements(request)}`);
     }
   },
 };
