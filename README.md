@@ -1,5 +1,3 @@
 # hitchbot
-Bot tester/dev mode for https://github.com/glitchfiles/glitchbot and https://github.com/AlexanderKudr/glitch-dashboard
-
-Requested features/todo:
-Finish roles, leveling system, fix events
+Bot starter with common comands and events w/o fs.
+Clone, then npm i and add your commands/events/etc...
