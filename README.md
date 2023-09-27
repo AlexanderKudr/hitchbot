@@ -1,3 +1,3 @@
 # hitchbot
-- Bot starter with common comands and events w/o fs.
+- Template for creating bots using Discord JS
 - Clone, then npm i and add your commands/events/etc...
